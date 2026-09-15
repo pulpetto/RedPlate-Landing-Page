@@ -1,0 +1,329 @@
+@layer reset, base, layout, components;
+
+@layer reset {
+  *,
+  *::before,
+  *::after {
+    box-sizing: border-box;
+  }
+
+  html,
+  body {
+    margin: 0;
+    min-width: 320px;
+    min-height: 100%;
+  }
+
+  button,
+  a {
+    font: inherit;
+  }
+}
+
+@layer base {
+  :root {
+    color-scheme: dark;
+    --ink: #050405;
+    --surface: #0b0809;
+    --red: #f22c34;
+    --red-bright: #ff4a4f;
+    --red-dark: #571116;
+    --paper: #f6eff0;
+    --muted: #9f8d90;
+  }
+
+  html {
+    background: var(--ink);
+    font-family: "Handjet", monospace;
+  }
+
+  body {
+    color: var(--paper);
+    overflow-x: hidden;
+  }
+
+  button:focus-visible,
+  a:focus-visible {
+    outline: 2px solid var(--red-bright);
+    outline-offset: 5px;
+  }
+}
+
+@layer layout {
+  .page-shell {
+    position: relative;
+    isolation: isolate;
+    display: grid;
+    grid-template-rows: minmax(0, 1fr) auto;
+    min-height: 100svh;
+    overflow: hidden;
+    background:
+      radial-gradient(circle at 50% 44%, rgba(126, 9, 17, 0.23) 0, rgba(45, 5, 8, 0.12) 26rem, transparent 42rem),
+      linear-gradient(180deg, #080607 0%, #050405 100%);
+  }
+
+  .page-shell::before {
+    position: absolute;
+    z-index: -1;
+    inset: 0;
+    background-image:
+      linear-gradient(rgba(242, 44, 52, 0.035) 1px, transparent 1px),
+      linear-gradient(90deg, rgba(242, 44, 52, 0.035) 1px, transparent 1px);
+    background-size: 3rem 3rem;
+    mask-image: linear-gradient(to bottom, transparent 2%, #000 28%, #000 72%, transparent 98%);
+    content: "";
+  }
+
+  .page-shell::after {
+    position: absolute;
+    z-index: -1;
+    top: 0;
+    left: 50%;
+    width: min(72rem, 94vw);
+    height: 0.25rem;
+    background: var(--red);
+    box-shadow: 0 0 2rem rgba(242, 44, 52, 0.75);
+    content: "";
+    transform: translateX(-50%);
+  }
+
+  .hero {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    width: min(100%, 76rem);
+    margin-inline: auto;
+    padding: clamp(3.5rem, 8vh, 6.5rem) 1.5rem clamp(2rem, 5vh, 4rem);
+    text-align: center;
+  }
+
+  .footer {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 0.75rem;
+    min-height: 4.25rem;
+    border-top: 1px solid rgba(242, 44, 52, 0.16);
+    padding: 1rem 1.5rem;
+    background: rgba(5, 4, 5, 0.76);
+    backdrop-filter: blur(10px);
+    color: var(--muted);
+    font-size: 1rem;
+    letter-spacing: 0.08em;
+  }
+}
+
+@layer components {
+  .wordmark {
+    position: relative;
+    z-index: 2;
+  }
+
+  .eyebrow {
+    margin: 0 0 0.4rem;
+    color: var(--muted);
+    font-size: 0.875rem;
+    font-weight: 600;
+    letter-spacing: 0.3em;
+  }
+
+  h1 {
+    margin: 0;
+    color: var(--red);
+    font-size: clamp(5rem, 14vw, 10rem);
+    font-weight: 800;
+    letter-spacing: -0.035em;
+    line-height: 0.72;
+    text-shadow: 0 0 2.5rem rgba(242, 44, 52, 0.2);
+  }
+
+  .tagline {
+    margin: 1rem 0 0;
+    color: var(--paper);
+    font-size: clamp(2rem, 5.5vw, 3.75rem);
+    font-weight: 450;
+    letter-spacing: 0.08em;
+    line-height: 1;
+  }
+
+  .mascot-frame {
+    position: relative;
+    display: grid;
+    place-items: center;
+    width: 200px;
+    height: 200px;
+    margin: clamp(1.75rem, 4vh, 3.25rem) auto clamp(1.5rem, 3vh, 2.5rem);
+  }
+
+  .mascot-frame::before {
+    position: absolute;
+    inset: 11%;
+    border-radius: 50%;
+    background: rgba(132, 13, 20, 0.25);
+    box-shadow: 0 0 5rem 1rem rgba(149, 13, 21, 0.23);
+    content: "";
+  }
+
+  .mascot {
+    position: relative;
+    display: block;
+    width: 200px;
+    height: 200px;
+    image-rendering: pixelated;
+    image-rendering: crisp-edges;
+    object-fit: contain;
+  }
+
+  .corner {
+    position: absolute;
+    width: 1.5rem;
+    height: 1.5rem;
+    border-color: rgba(242, 44, 52, 0.58);
+    border-style: solid;
+  }
+
+  .corner--top-left {
+    top: 0;
+    left: 0;
+    border-width: 1px 0 0 1px;
+  }
+
+  .corner--top-right {
+    top: 0;
+    right: 0;
+    border-width: 1px 1px 0 0;
+  }
+
+  .corner--bottom-left {
+    bottom: 0;
+    left: 0;
+    border-width: 0 0 1px 1px;
+  }
+
+  .corner--bottom-right {
+    right: 0;
+    bottom: 0;
+    border-width: 0 1px 1px 0;
+  }
+
+  .store-button {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.8rem;
+    min-width: 12.5rem;
+    min-height: 3.75rem;
+    border: 1px solid rgba(255, 255, 255, 0.82);
+    border-radius: 0.7rem;
+    padding: 0.65rem 1.15rem;
+    background: #020202;
+    color: #fff;
+    cursor: pointer;
+    text-align: left;
+    transition: border-color 160ms ease, background-color 160ms ease, transform 160ms ease;
+  }
+
+  .store-button:hover {
+    border-color: var(--red-bright);
+    background: #13090a;
+    transform: translateY(-2px);
+  }
+
+  .store-button:active {
+    transform: translateY(0);
+  }
+
+  .apple-mark {
+    width: 1.85rem;
+    flex: 0 0 auto;
+    fill: currentColor;
+  }
+
+  .store-copy {
+    display: flex;
+    flex-direction: column;
+  }
+
+  .store-kicker {
+    font-size: 0.8rem;
+    font-weight: 500;
+    letter-spacing: 0.06em;
+    line-height: 1;
+  }
+
+  .store-name {
+    margin-top: 0.1rem;
+    font-size: 1.65rem;
+    font-weight: 650;
+    line-height: 1;
+  }
+
+  .footer-label {
+    color: #766568;
+  }
+
+  .footer a {
+    color: var(--paper);
+    font-weight: 550;
+    text-decoration-color: var(--red-dark);
+    text-underline-offset: 0.28rem;
+    transition: color 160ms ease, text-decoration-color 160ms ease;
+  }
+
+  .footer a:hover {
+    color: var(--red-bright);
+    text-decoration-color: var(--red-bright);
+  }
+
+  @media (min-width: 380px) {
+    .mascot-frame,
+    .mascot {
+      width: 300px;
+      height: 300px;
+    }
+  }
+
+  @media (min-width: 700px) {
+    .mascot-frame,
+    .mascot {
+      width: 400px;
+      height: 400px;
+    }
+  }
+
+  @media (min-width: 1100px) and (min-height: 850px) {
+    .mascot-frame,
+    .mascot {
+      width: 500px;
+      height: 500px;
+    }
+  }
+
+  @media (max-height: 720px) {
+    .hero {
+      padding-top: 2.75rem;
+      padding-bottom: 1.5rem;
+    }
+
+    .mascot-frame {
+      margin-top: 1.25rem;
+      margin-bottom: 1.15rem;
+    }
+  }
+
+  @media (max-width: 480px) {
+    .footer {
+      flex-direction: column;
+      gap: 0.15rem;
+    }
+  }
+
+  @media (prefers-reduced-motion: reduce) {
+    *,
+    *::before,
+    *::after {
+      scroll-behavior: auto !important;
+      transition-duration: 0.01ms !important;
+    }
+  }
+}
