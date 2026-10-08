@@ -1,0 +1,36 @@
+@import url('https://fonts.googleapis.com/css2?family=Handjet:wght@400;600;800&display=swap');
+
+* { box-sizing: border-box; }
+[hidden] { display: none !important; }
+html { color-scheme: dark; background: #050405; }
+body {
+  margin: 0;
+  min-width: 320px;
+  min-height: 100svh;
+  display: grid;
+  place-items: center;
+  color: #f6eff0;
+  background: radial-gradient(circle at 50% 40%, #35090e 0, #050405 65%);
+  font-family: 'Handjet', monospace;
+}
+main { width: min(100%, 460px); padding: 36px 24px; text-align: center; }
+.brand { color: #f22c34; font-size: 36px; font-weight: 800; text-decoration: none; }
+img { display: block; margin: 20px auto; image-rendering: pixelated; }
+h1 { margin: 16px 0; color: #f22c34; font-size: clamp(42px, 10vw, 58px); line-height: 0.95; }
+p { color: #c8babc; font-size: 23px; line-height: 1.3; }
+.button {
+  display: block;
+  margin: 14px 0;
+  padding: 16px;
+  border: 2px solid #f22c34;
+  background: #f22c34;
+  color: #fff;
+  font-size: 26px;
+  font-weight: 600;
+  text-decoration: none;
+}
+.secondary { background: #090708; border-color: #9f8d90; }
+.button:hover { background: #571116; }
+a:focus-visible { outline: 2px solid #ff4a4f; outline-offset: 5px; }
+.help { font-size: 19px; }
+.home { display: inline-block; margin-top: 12px; color: #c8babc; font-size: 20px; }
