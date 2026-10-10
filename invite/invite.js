@@ -30,8 +30,14 @@
   }
 
   const open = document.getElementById('open-app');
-  open.href = `redplate://invite/${token}`;
+  // An explicit Android intent targets our package and stays on the invite
+  // page when the app is unavailable. The link is launched by a user tap.
+  const fallback = encodeURIComponent(`https://redplate.app/invite/?token=${token}`);
+  open.href = android
+    ? `intent://invite/${token}#Intent;scheme=redplate;package=app.redplate;S.browser_fallback_url=${fallback};end`
+    : `redplate://invite/${token}`;
   open.hidden = false;
+  document.getElementById('install-ios').hidden = android;
   document.getElementById('install-help').hidden = false;
   message.textContent = android
     ? 'Red Plate is not on Google Play yet. If you already installed it, open your friend’s invite below.'

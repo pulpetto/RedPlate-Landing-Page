@@ -1,1 +1,14 @@
-[]
+[
+  {
+    "relation": [
+      "delegate_permission/common.handle_all_urls"
+    ],
+    "target": {
+      "namespace": "android_app",
+      "package_name": "app.redplate",
+      "sha256_cert_fingerprints": [
+        "F6:57:76:9E:7F:CC:C9:D4:13:8E:F1:8A:BD:C8:57:A2:8B:67:7C:09:70:BE:F8:21:2D:9E:36:E8:2B:E0:46:9A"
+      ]
+    }
+  }
+]
